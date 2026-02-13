@@ -45,7 +45,7 @@ export async function changePasswordAction(data: {
 const editProfileSchema = z.object({
   full_name: z.string().min(2, 'Full name must be at least 2 characters').max(100),
   blood_type: z.enum(['A+','A-','B+','B-','O+','O-','AB+','AB-'], {
-    required_error: 'Please select a blood type',
+    message: 'Please select a blood type',
   }),
   barangay: z.string().min(1, 'Please select your barangay'),
   weight: z.number().min(50, 'You must weigh at least 50 kg').max(300),
