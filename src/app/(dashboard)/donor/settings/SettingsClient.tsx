@@ -23,7 +23,7 @@ export async function changePasswordAction(data: {
   if (!user?.email) return { error: 'Not authenticated' }
 
   const parsed = changePasswordSchema.safeParse(data)
-  if (!parsed.success) return { error: parsed.error.errors[0].message }
+  if (!parsed.success) return { error: parsed.error.issues[0].message }
 
   // Re-authenticate to verify current password before allowing change
   const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -70,7 +70,7 @@ export async function editProfileAction(data: EditProfileData) {
   if (!user) return { error: 'Not authenticated' }
 
   const parsed = editProfileSchema.safeParse(data)
-  if (!parsed.success) return { error: parsed.error.errors[0].message }
+  if (!parsed.success) return { error: parsed.error.issues[0].message }
 
   const { error } = await supabase
     .from('profiles')
