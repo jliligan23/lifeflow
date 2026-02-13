@@ -28,7 +28,7 @@ export const registerSchema = z.object({
     .regex(/[0-9]/, 'Password must contain at least one number'),
   bloodType: z
     .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-', 'unknown'], {
-      required_error: 'Please select your blood type',
+      message: 'Please select your blood type',
     }),
   consent: z
     .boolean()
