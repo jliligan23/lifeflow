@@ -238,7 +238,7 @@ export default function LoginPage() {
         </div>
 
         {/* Staff Login Button */}
-        <Link
+        <a
           href="/admin/login"
           className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-white/5 border-2 border-gray-200 dark:border-white/10 text-gray-700 dark:text-white rounded-full font-semibold text-sm hover:border-[#1152d4] hover:text-[#1152d4] dark:hover:border-[#1152d4] dark:hover:text-[#1152d4] transition-all active:scale-95"
         >
@@ -246,7 +246,7 @@ export default function LoginPage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
           Staff / Admin Login
-        </Link>
+        </a>
 
         <p className="text-[#1b0d0d]/40 dark:text-white/40 text-[10px] uppercase tracking-widest mt-4 font-semibold">
           Baguio City Health Initiative

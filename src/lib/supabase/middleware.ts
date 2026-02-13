@@ -33,13 +33,15 @@ export async function updateSession(request: NextRequest) {
 
   const isOnboardingRoute = url.pathname === '/onboarding'
   const isRootRoute = url.pathname === '/'
-  const authRoutes = ['/login', '/register', '/forgot-password', '/verify-otp', '/reset-password']
+  const authRoutes = ['/login', '/register', '/forgot-password', '/verify-otp', '/reset-password', '/admin/login', '/admin/register']
   const setupRoutes = ['/profile-setup']
   const dashboardRoutes = ['/donor', '/admin']
 
   const isAuthRoute = authRoutes.some(r => url.pathname.startsWith(r))
   const isSetupRoute = setupRoutes.some(r => url.pathname.startsWith(r))
-  const isDashboardRoute = dashboardRoutes.some(r => url.pathname.startsWith(r))
+  const adminAuthRoutes = ['/admin/login', '/admin/register']
+  const isAdminAuthRoute = adminAuthRoutes.some(r => url.pathname.startsWith(r))
+  const isDashboardRoute = dashboardRoutes.some(r => url.pathname.startsWith(r)) && !isAdminAuthRoute
 
   // ── ONBOARDING GATE ──────────────────────────────────────────────────────
   // First-time visitor hitting root → show onboarding first
@@ -71,43 +73,41 @@ export async function updateSession(request: NextRequest) {
 
   // ── AUTHENTICATED ─────────────────────────────────────────────────────────
 
+  // Fetch profile once for role/profile_completed checks
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('profile_completed, role')
+    .eq('id', user.id)
+    .single()
+
   // Logged-in users should never see auth or onboarding pages
   if (isAuthRoute || isOnboardingRoute || isRootRoute) {
-    url.pathname = '/donor/dashboard'
+    url.pathname = profile?.role === 'admin' ? '/admin/dashboard' : '/donor/dashboard'
     return NextResponse.redirect(url)
   }
 
-  // Check profile completion before granting dashboard access
+  // Check dashboard access rules
   if (isDashboardRoute) {
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('profile_completed, role')
-      .eq('id', user.id)
-      .single()
+    // Admins bypass donor profile completion and go straight to admin area
+    if (profile?.role === 'admin') {
+      if (url.pathname.startsWith('/donor')) {
+        url.pathname = '/admin/dashboard'
+        return NextResponse.redirect(url)
+      }
+      return supabaseResponse
+    }
 
+    // Donors must complete profile before accessing dashboards
     if (!profile?.profile_completed) {
       url.pathname = '/profile-setup/step-1'
       return NextResponse.redirect(url)
     }
-
-    if (profile?.role === 'admin' && url.pathname.startsWith('/donor')) {
-      url.pathname = '/admin/dashboard'
-      return NextResponse.redirect(url)
-    }
   }
 
-  // Profile already completed → skip setup
-  if (isSetupRoute) {
-    const { data: profile } = await supabase
-      .from('profiles')
-      .select('profile_completed')
-      .eq('id', user.id)
-      .single()
-
-    if (profile?.profile_completed) {
-      url.pathname = '/donor/dashboard'
-      return NextResponse.redirect(url)
-    }
+  // Profile already completed → skip setup (donors only)
+  if (isSetupRoute && profile?.profile_completed) {
+    url.pathname = '/donor/dashboard'
+    return NextResponse.redirect(url)
   }
 
   return supabaseResponse
