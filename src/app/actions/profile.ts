@@ -15,7 +15,7 @@ export async function saveStep1Action(data: {
 
   const parsed = step1Schema.safeParse(data)
   if (!parsed.success) {
-    return { error: parsed.error.errors[0].message }
+    return { error: parsed.error.issues[0].message }
   }
 
   const { error } = await supabase
@@ -41,7 +41,7 @@ export async function saveStep2Action(data: {
 
   const parsed = step2Schema.safeParse(data)
   if (!parsed.success) {
-    return { error: parsed.error.errors[0].message }
+    return { error: parsed.error.issues[0].message }
   }
 
   const { error } = await supabase
@@ -67,7 +67,7 @@ export async function saveStep3Action(data: {
 
   const parsed = step3Schema.safeParse(data)
   if (!parsed.success) {
-    return { error: parsed.error.errors[0].message }
+    return { error: parsed.error.issues[0].message }
   }
 
   // Save step 3 AND mark profile as completed in one update
