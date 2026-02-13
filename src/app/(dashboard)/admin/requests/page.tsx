@@ -1,11 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import AdminBottomNav from '@/components/admin/AdminBottomNav'
 
 export default function AdminRequestsPage() {
   return (
     <div className="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
-      <div className="max-w-md mx-auto pb-24">
+      <div className="relative mx-auto max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark flex flex-col shadow-2xl border-x border-slate-200 dark:border-slate-800">
         {/* Top App Bar */}
         <header className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center p-4 justify-between">
@@ -30,7 +31,9 @@ export default function AdminRequestsPage() {
                 type="button"
                 className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
               >
-                <span className="material-symbols-outlined">search</span>
+                <svg className="w-5 h-5 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
               </button>
             </div>
           </div>
@@ -42,7 +45,9 @@ export default function AdminRequestsPage() {
             <div className="flex flex-col gap-3 rounded-xl border border-primary/30 bg-primary/5 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex size-10 items-center justify-center rounded-full bg-primary text-white">
-                  <span className="material-symbols-outlined">priority_high</span>
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
                 </div>
                 <div className="flex flex-col">
                   <p className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
@@ -93,7 +98,10 @@ export default function AdminRequestsPage() {
                 </div>
                 <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-medium flex items-center gap-1">
-                    <span className="material-symbols-outlined text-sm">location_on</span>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                     Baguio General Hospital (BGHMC)
                   </p>
                 </div>
@@ -118,11 +126,15 @@ export default function AdminRequestsPage() {
                 </p>
                 <div className="flex gap-3">
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-primary text-white text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">check_circle</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     Approve
                   </button>
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">flag</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    </svg>
                     Flag
                   </button>
                 </div>
@@ -146,7 +158,10 @@ export default function AdminRequestsPage() {
                 </div>
                 <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-medium flex items-center gap-1">
-                    <span className="material-symbols-outlined text-sm">location_on</span>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                     SLU Medical Center
                   </p>
                 </div>
@@ -171,11 +186,15 @@ export default function AdminRequestsPage() {
                 </p>
                 <div className="flex gap-3">
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-primary text-white text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">check_circle</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     Approve
                   </button>
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">flag</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    </svg>
                     Flag
                   </button>
                 </div>
@@ -199,7 +218,10 @@ export default function AdminRequestsPage() {
                 </div>
                 <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-medium flex items-center gap-1">
-                    <span className="material-symbols-outlined text-sm">location_on</span>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
                     Notre Dame de Chartres
                   </p>
                 </div>
@@ -221,11 +243,15 @@ export default function AdminRequestsPage() {
                 </div>
                 <div className="flex gap-3 mt-4">
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-primary text-white text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">check_circle</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     Approve
                   </button>
                   <button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-11 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold transition-transform active:scale-95">
-                    <span className="material-symbols-outlined text-lg">flag</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    </svg>
                     Flag
                   </button>
                 </div>
@@ -234,36 +260,7 @@ export default function AdminRequestsPage() {
           </div>
         </main>
 
-        {/* Navigation Bar */}
-        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800">
-          <div className="max-w-md mx-auto flex h-16 items-center justify-around px-4">
-            <Link href="/admin/requests" className="flex flex-col items-center gap-1 text-primary">
-              <span className="material-symbols-outlined">assignment_late</span>
-              <span className="text-[10px] font-bold">Requests</span>
-            </Link>
-            <Link
-              href="/admin/dashboard"
-              className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400"
-            >
-              <span className="material-symbols-outlined">analytics</span>
-              <span className="text-[10px] font-bold">Dashboard</span>
-            </Link>
-            <Link
-              href="/donor/search"
-              className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400"
-            >
-              <span className="material-symbols-outlined">group</span>
-              <span className="text-[10px] font-bold">Donors</span>
-            </Link>
-            <Link
-              href="/admin/dashboard"
-              className="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400"
-            >
-              <span className="material-symbols-outlined">settings</span>
-              <span className="text-[10px] font-bold">Settings</span>
-            </Link>
-          </div>
-        </nav>
+        <AdminBottomNav />
       </div>
     </div>
   )

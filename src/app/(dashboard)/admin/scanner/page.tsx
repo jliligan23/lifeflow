@@ -2,13 +2,14 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import AdminBottomNav from '@/components/admin/AdminBottomNav'
 
 export default function AdminScannerPage() {
   const router = useRouter()
 
   return (
     <div className="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden">
-      <div className="relative h-screen w-full flex flex-col">
+      <div className="relative mx-auto max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark flex flex-col shadow-2xl border-x border-slate-200 dark:border-slate-800">
         {/* Live Camera Viewfinder Layer (placeholder background for now) */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center"
@@ -39,7 +40,9 @@ export default function AdminScannerPage() {
             onClick={() => router.push('/admin/dashboard')}
             className="text-white flex size-12 shrink-0 items-center cursor-pointer"
           >
-            <span className="material-symbols-outlined text-2xl">arrow_back_ios</span>
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
           </button>
           <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">
             Scan Donor QR
@@ -136,39 +139,8 @@ export default function AdminScannerPage() {
           </div>
         </div>
 
-        {/* Bottom Navigation Bar */}
-        <nav className="relative z-30 bg-background-dark border-t border-white/10 flex items-center justify-around py-3 pb-8">
-          <Link
-            href="/admin/dashboard"
-            className="flex flex-col items-center gap-1 text-[#92a4c9]"
-          >
-            <span className="material-symbols-outlined">dashboard</span>
-            <span className="text-[10px] font-medium">Home</span>
-          </Link>
-          <Link
-            href="/admin/scanner"
-            className="flex flex-col items-center gap-1 text-primary"
-          >
-            <span className="material-symbols-outlined">qr_code_scanner</span>
-            <span className="text-[10px] font-medium">Scan</span>
-          </Link>
-          <Link
-            href="/donor/search"
-            className="flex flex-col items-center gap-1 text-[#92a4c9]"
-          >
-            <span className="material-symbols-outlined">group</span>
-            <span className="text-[10px] font-medium">Donors</span>
-          </Link>
-          <Link
-            href="/admin/dashboard"
-            className="flex flex-col items-center gap-1 text-[#92a4c9]"
-          >
-            <span className="material-symbols-outlined">settings</span>
-            <span className="text-[10px] font-medium">Settings</span>
-          </Link>
-        </nav>
+        <AdminBottomNav />
       </div>
     </div>
   )
 }
-
