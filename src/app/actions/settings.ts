@@ -23,7 +23,7 @@ export async function changePasswordAction(data: {
   if (!user?.email) return { error: 'Not authenticated' }
 
   const parsed = changePasswordSchema.safeParse(data)
-  if (!parsed.success) return { error: parsed.error.errors[0].message }
+  if (!parsed.success) return { error: parsed.error.issues[0].message }
 
   // Re-authenticate to verify current password before allowing change
   const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -45,7 +45,7 @@ export async function changePasswordAction(data: {
 const editProfileSchema = z.object({
   full_name: z.string().min(2, 'Full name must be at least 2 characters').max(100),
   blood_type: z.enum(['A+','A-','B+','B-','O+','O-','AB+','AB-'], {
-    required_error: 'Please select a blood type',
+    message: 'Please select a blood type',
   }),
   barangay: z.string().min(1, 'Please select your barangay'),
   weight: z.number().min(50, 'You must weigh at least 50 kg').max(300),
@@ -70,7 +70,7 @@ export async function editProfileAction(data: EditProfileData) {
   if (!user) return { error: 'Not authenticated' }
 
   const parsed = editProfileSchema.safeParse(data)
-  if (!parsed.success) return { error: parsed.error.errors[0].message }
+  if (!parsed.success) return { error: parsed.error.issues[0].message }
 
   const { error } = await supabase
     .from('profiles')
