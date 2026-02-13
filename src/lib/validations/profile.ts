@@ -2,11 +2,11 @@ import { z } from 'zod'
 
 export const step1Schema = z.object({
   weight: z
-    .number({ invalid_type_error: 'Please enter your weight' })
+    .number('Please enter your weight')
     .min(50, 'You must weigh at least 50 kg to donate blood')
     .max(300, 'Please enter a valid weight'),
   height: z
-    .number({ invalid_type_error: 'Please enter your height' })
+    .number('Please enter your height')
     .min(100, 'Please enter a valid height')
     .max(250, 'Please enter a valid height'),
   on_medication: z.boolean().default(false),
@@ -18,7 +18,7 @@ export const step2Schema = z.object({
     .min(1, 'Please select your barangay'),
   preferred_donation_day: z
     .enum(['any', 'weekdays', 'weekends'], {
-      required_error: 'Please select your preferred donation day',
+      message: 'Please select your preferred donation day',
     }),
 })
 
